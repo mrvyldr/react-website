@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import posed from 'react-pose';
 import MainConsumer from "../context";
+import axios from "axios";
 var uniqid = require("uniqid");
 
 
@@ -35,7 +36,7 @@ class AddMain extends Component {
         })
     }
 
-    addMain = (dispatch,e) =>{
+    addMain = async (dispatch,e) =>{
         e.preventDefault();
         
         const {name, age, school} = this.state
@@ -46,6 +47,11 @@ class AddMain extends Component {
             age,
             school
         }
+
+        await axios.post("http://localhost:3004/mains", newMain)
+        .then(response => 
+            console.log(response.data, "success")
+        )
         
         dispatch({type:"ADD_MAIN", payload:newMain});       
     }

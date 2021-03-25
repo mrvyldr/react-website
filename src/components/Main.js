@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from "prop-types";
 import MainConsumer from "../context";
+import axios from "axios";
 var uniqid = require("uniqid");
 
 
@@ -32,6 +33,14 @@ class Main extends Component {
         
         //Consumer dispatch
         dispatch({type:"DELETE_MAIN", payload:id});
+    }
+
+    componentWillUnmount = async () => {
+        console.log("e ",this.props)
+        await axios.delete("http://localhost:3004/mains/"+this.props.id)
+        .then(response => 
+            console.log(response.data, "success")
+        )
     }
 
     // constructor(props){

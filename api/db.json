@@ -1,0 +1,16 @@
+{
+  "mains": [
+    {
+      "id": "uniq-2",
+      "name": "atakan",
+      "age": "34",
+      "school": "Marmara"
+    },
+    {
+      "id": "kmox8pem",
+      "name": "merve",
+      "age": "23",
+      "school": "İÜ-Cerrahpasa"
+    }
+  ]
+}

@@ -3,7 +3,7 @@ import "./App.css";
 import Mains from './components/Mains';
 import Navbar from "./components/Navbar";
 import AddMain from "./components/AddMain";
-
+import Test from './components/Test'
 
 class App extends Component {
 
@@ -11,6 +11,8 @@ class App extends Component {
     return (
 
       <div className="App-header">
+       
+        <Navbar title = "Application"></Navbar>
        <div className="container">
           <div className="row">
             <div className="col">
