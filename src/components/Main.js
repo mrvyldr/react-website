@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from "prop-types";
-import MainConsumer from "../context"
+import MainConsumer from "../context";
+var uniqid = require("uniqid");
 
 
 class Main extends Component {
@@ -8,11 +9,13 @@ class Main extends Component {
         isVisible : false
     }
     static defaultProps = {
+        id : uniqid(),
         name : "Alice",
         age : "23",
         school : "Cambrige"
     }
     static propTypes = {
+        id : PropTypes.string.isRequired,
         name : PropTypes.string.isRequired,
         age : PropTypes.string.isRequired,
         school : PropTypes.string.isRequired
@@ -51,15 +54,15 @@ class Main extends Component {
 
                         return (
                             <div className="col-md-8 mb-4">
-                                <div className="card">
-                                    <div className="card-header d-flex justify-content-between" style={{background:"#5a6274"}}>
+                                <div className="card" style={isVisible ? {background:"#617b92", color:"white"} : null}>
+                                    <div className="card-header d-flex justify-content-between" >
                                         <h4 className="d-inline" onClick={this.onClickEvent.bind(this, 23)}>  {name}</h4>
                                         <i onClick = {this.onDeleteMain.bind(this, dispatch)} className="fa fa-snowflake-o" style={{cursor:"pointer"}}></i>
                                     </div>
-    
+                            
                                     {
                                         isVisible ? 
-                                        <div className="card-body" style={{background:"rgb(90 98 116 / 74%)"}}>
+                                        <div className="card-body" >
                                         <p>{age}</p>
                                         <p>{school}</p>
                                         </div> : null

@@ -9,6 +9,11 @@ const MainContext = React.createContext();
                  ...state,
                  mains: state.mains.filter(main => action.payload !== main.id)
              }
+        case "ADD_MAIN":
+            return{
+                ...state,
+                mains: [...state.mains, action.payload]
+            }
         default:
             return state
      }
@@ -18,13 +23,13 @@ export class MainProvider extends Component {
     state = {
         mains : [
           {
-            id:1,
+            id:"uniq-1",
             name:"merve",
             age:"22",
             school:"iü-c"
           },
           {
-            id:2,
+            id:"uniq-2",
             name:"seda",
             age:"40",
             school:"marmara"
