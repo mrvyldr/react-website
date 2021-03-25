@@ -2,7 +2,17 @@ import React, { Component } from 'react'
 
 const MainContext = React.createContext();
 //Provider, Consumer
- 
+ const reducer = (state, action) => {
+     switch(action.type){
+         case "DELETE_MAIN":
+             return{
+                 ...state,
+                 mains: state.mains.filter(main => action.payload !== main.id)
+             }
+        default:
+            return state
+     }
+ }
 
 export class MainProvider extends Component {
     state = {
@@ -19,7 +29,10 @@ export class MainProvider extends Component {
             age:"40",
             school:"marmara"
           }
-        ]
+        ],
+        dispatch : action =>{
+            this.setState(state => reducer(state, action))
+        }
       }
 
     render() {

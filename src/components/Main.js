@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from "prop-types";
+import MainConsumer from "../context"
 
 
 class Main extends Component {
@@ -23,6 +24,13 @@ class Main extends Component {
         })
     }
 
+    onDeleteMain = (dispatch, e) => {
+        const {id} = this.props;
+        
+        //Consumer dispatch
+        dispatch({type:"DELETE_MAIN", payload:id});
+    }
+
     // constructor(props){
     //     super(props);
 
@@ -35,24 +43,38 @@ class Main extends Component {
         const {name, age, school} = this.props;
         const {isVisible} = this.state;
 
-        return (
-            <div className="col-md-8 mb-4">
-                <div className="card">
-                    <div className="card-header d-flex justify-content-between" style={{background:"#5a6274"}}>
-                        <h4 className="d-inline" onClick={this.onClickEvent.bind(this, 23)}>  {name}</h4>
-                        <i className="fa fa-snowflake-o" style={{cursor:"pointer"}}></i>
-                    </div>
+        return( 
+            <MainConsumer>
+                {
+                    value => {
+                        const{dispatch} = value;
 
-                    {
-                        isVisible ? 
-                        <div className="card-body" style={{background:"rgb(90 98 116 / 74%)"}}>
-                        <p>{age}</p>
-                        <p>{school}</p>
-                        </div> : null
+                        return (
+                            <div className="col-md-8 mb-4">
+                                <div className="card">
+                                    <div className="card-header d-flex justify-content-between" style={{background:"#5a6274"}}>
+                                        <h4 className="d-inline" onClick={this.onClickEvent.bind(this, 23)}>  {name}</h4>
+                                        <i onClick = {this.onDeleteMain.bind(this, dispatch)} className="fa fa-snowflake-o" style={{cursor:"pointer"}}></i>
+                                    </div>
+    
+                                    {
+                                        isVisible ? 
+                                        <div className="card-body" style={{background:"rgb(90 98 116 / 74%)"}}>
+                                        <p>{age}</p>
+                                        <p>{school}</p>
+                                        </div> : null
+                                    }
+                                </div>
+                            </div>
+                        )
                     }
-                </div>
-            </div>
+
+                    
+                }
+            </MainConsumer>
         )
+
+        
     }
 }
 

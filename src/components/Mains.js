@@ -22,7 +22,10 @@ class Mains extends Component {
                                             key = {main.id}
                                             name = {main.name}
                                             age = {main.age}
-                                            school = {main.school}></Main>
+                                            school = {main.school}
+                                            id = {main.id}>
+
+                                            </Main>
                                         )
                                     })
                                 }
